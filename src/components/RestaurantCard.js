@@ -3,21 +3,21 @@ import { View } from 'react-native'
 import styled from 'styled-components'
 
 const Title = styled(Text)`
-  color: red;
-  padding: 10px
+  color: ${props => props.theme.colors.ui.primary};
+  padding: ${props => props.theme.space[3]}
 
 `
 
 const RestaurantCardCover = styled(Card.Cover)`
   
    backgroundColor: '#fff';
-   padding: 20px 10px;
+   padding: ${props => props.theme.space[3]};
    
 `
 
 const RestaurantCardItem = styled(Card)`
-  backgroundColor: '#fff';
-  padding: 20px;
+  backgroundColor: '#000';
+  padding: ${props => props.theme.space[3]};
   border-radius: 10px
 `
 

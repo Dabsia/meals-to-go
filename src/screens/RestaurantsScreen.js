@@ -1,6 +1,6 @@
 import React from 'react'
-import { SafeAreaView, StatusBar, StyleSheet, View } from 'react-native'
-import { Searchbar, Text } from 'react-native-paper'
+import { SafeAreaView, StatusBar, View } from 'react-native'
+import { Searchbar } from 'react-native-paper'
 import RestaurantCard from '../components/RestaurantCard'
 import { styled } from 'styled-components'
 
@@ -12,8 +12,12 @@ const SafeArea = styled.SafeAreaView`
 
 const SearchContainer = styled.View`
     justifyContent: 'center';
-        padding: 16px;
-        color: 'white';
+        padding: ${props => props.theme.space[3]};
+        color: white;
+`
+
+const RestaurantCardContainer = styled.View`
+    padding: ${props => props.theme.space[2]};
 `
 
 const RestaurantsScreen = () => {
@@ -22,10 +26,11 @@ const RestaurantsScreen = () => {
             <SearchContainer >
                 <Searchbar />
             </SearchContainer>
-            <RestaurantCard />
-            <RestaurantCard />
-            <RestaurantCard />
-            <RestaurantCard />
+            <RestaurantCardContainer>
+                <RestaurantCard />
+            </RestaurantCardContainer>
+
+
         </SafeArea >
     )
 }
