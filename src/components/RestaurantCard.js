@@ -47,28 +47,33 @@ align-self: center
   `
 
 
-const RestaurantCard = ({ restaurant = {} }) => {
+const RestaurantCard = ({ restaurant }) => {
+  const photos = restaurant.item.photos
+
 
   const {
     name = 'Some Restaurant',
     icon = '',
-    photos = ['https://images.unsplash.com/photo-1537047902294-62a40c20a6ae?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8cmVzdGF1cmFudHxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60'],
+    // photos = ['https://images.unsplash.com/photo-1537047902294-62a40c20a6ae?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8cmVzdGF1cmFudHxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60'],
     address = 'Some random address',
     isOpenNow = true,
     rating = 4,
-    isClosedTemp
+    isClosedTemp,
+    // vicinity
 
   } = restaurant;
 
+  // console.log(restaurant.vicinity)
 
-  const ratingsArray = Array.from(new Array(Math.floor(rating)))
+
+  const ratingsArray = Array.from(new Array(Math.floor(restaurant.item.rating)))
 
   return (
 
     <RestaurantCardItem elevation={3}  >
       <RestaurantCardCover key={name} source={{ uri: photos[0] }} />
       <Info>
-        <Title>{name}</Title>
+        <Title>{restaurant.item.name}</Title>
         <Section>
           <Ratings>
             {
@@ -82,7 +87,7 @@ const RestaurantCard = ({ restaurant = {} }) => {
           </SectionEnd>
 
         </Section>
-        <Address>{address}</Address>
+        <Address>{restaurant.item.vicinity}</Address>
       </Info>
 
 
