@@ -9,7 +9,8 @@ import { useFonts as useOswald, Oswald_400Regular } from '@expo-google-fonts/osw
 import { useFonts as useLato, Lato_400Regular } from '@expo-google-fonts/lato'
 import { View, Text } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { RestaurantsContextProvider } from './src/services/restaurants/restaurant.content';
+import { RestaurantsContextProvider } from './src/services/restaurants/restaurant.context';
+import { LocationContextProvider } from './src/services/location/location.context';
 
 export default function App() {
 
@@ -50,38 +51,40 @@ export default function App() {
   return (
     <SafeArea>
       <ThemeProvider theme={theme} >
-        <RestaurantsContextProvider>
-          <NavigationContainer>
-            <Tab.Navigator
-              screenOptions={({ route }) => ({
-                tabBarIcon: ({ color, size }) => {
-                  let iconName;
+        <LocationContextProvider>
+          <RestaurantsContextProvider>
+            <NavigationContainer>
+              <Tab.Navigator
+                screenOptions={({ route }) => ({
+                  tabBarIcon: ({ color, size }) => {
+                    let iconName;
 
-                  if (route.name === 'Restaurants') {
-                    iconName = 'md-restaurant';
-                  }
-                  else if (route.name === 'Settings') {
-                    iconName = 'md-settings'
-                  }
-                  else if (route.name === 'Map') {
-                    iconName = 'md-map'
-                  }
-                  return <Ionicons name={iconName} size={size} color={color} />
-                },
+                    if (route.name === 'Restaurants') {
+                      iconName = 'md-restaurant';
+                    }
+                    else if (route.name === 'Settings') {
+                      iconName = 'md-settings'
+                    }
+                    else if (route.name === 'Map') {
+                      iconName = 'md-map'
+                    }
+                    return <Ionicons name={iconName} size={size} color={color} />
+                  },
 
-              })}
-              tabBarOptions={{
-                activeTintColor: 'tomato',
-                inActiveTintColor: 'gray'
-              }}
+                })}
+                tabBarOptions={{
+                  activeTintColor: 'tomato',
+                  inActiveTintColor: 'gray'
+                }}
 
-            >
-              <Tab.Screen options={{ headerShown: false }} name='Restaurants' component={RestaurantsScreen} />
-              <Tab.Screen options={{ headerShown: false }} name='Map' component={Map} />
-              <Tab.Screen options={{ headerShown: false }} name='Settings' component={Settings} />
-            </Tab.Navigator>
-          </NavigationContainer>
-        </RestaurantsContextProvider>
+              >
+                <Tab.Screen options={{ headerShown: false }} name='Restaurants' component={RestaurantsScreen} />
+                <Tab.Screen options={{ headerShown: false }} name='Map' component={Map} />
+                <Tab.Screen options={{ headerShown: false }} name='Settings' component={Settings} />
+              </Tab.Navigator>
+            </NavigationContainer>
+          </RestaurantsContextProvider>
+        </LocationContextProvider>
       </ThemeProvider>
       <ExpoStatusBar style="auto" />
     </SafeArea>

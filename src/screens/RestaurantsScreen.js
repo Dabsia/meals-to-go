@@ -3,7 +3,7 @@ import { FlatList } from 'react-native'
 import { Searchbar } from 'react-native-paper'
 import RestaurantCard from '../components/RestaurantCard'
 import { styled } from 'styled-components'
-import { RestaurantContext } from '../services/restaurants/restaurant.content'
+import { RestaurantContext } from '../services/restaurants/restaurant.context'
 import { ActivityIndicator } from 'react-native-paper'
 
 

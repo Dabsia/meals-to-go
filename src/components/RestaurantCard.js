@@ -63,7 +63,6 @@ const RestaurantCard = ({ restaurant }) => {
 
   } = restaurant;
 
-  // console.log(restaurant.vicinity)
 
 
   const ratingsArray = Array.from(new Array(Math.floor(restaurant.item.rating)))
