@@ -1,17 +1,13 @@
 import React, { useContext } from 'react'
 import { FlatList } from 'react-native'
-import { Searchbar } from 'react-native-paper'
 import RestaurantCard from '../components/RestaurantCard'
 import { styled } from 'styled-components'
 import { RestaurantContext } from '../services/restaurants/restaurant.context'
 import { ActivityIndicator } from 'react-native-paper'
+import Search from '../components/search/search.component'
 
 
-const SearchContainer = styled.View`
-    justifyContent: 'center';
-        padding: ${props => props.theme.space[3]};
-        color: white;
-`
+
 
 const ActivityIndicatorHolder = styled.View`
     flex: 1;
@@ -32,9 +28,7 @@ const RestaurantsScreen = () => {
 
     return (
         <>
-            <SearchContainer >
-                <Searchbar />
-            </SearchContainer>
+            <Search />
 
             {
                 isLoading ?

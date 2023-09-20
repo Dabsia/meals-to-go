@@ -50,6 +50,8 @@ align-self: center
 const RestaurantCard = ({ restaurant }) => {
   const photos = restaurant.item.photos
 
+  // console.log(photos[0])
+
 
   const {
     name = 'Some Restaurant',
@@ -59,7 +61,7 @@ const RestaurantCard = ({ restaurant }) => {
     isOpenNow = true,
     rating = 4,
     isClosedTemp,
-    // vicinity
+    placeId
 
   } = restaurant;
 
@@ -70,14 +72,14 @@ const RestaurantCard = ({ restaurant }) => {
   return (
 
     <RestaurantCardItem elevation={3}  >
-      <RestaurantCardCover key={name} source={{ uri: photos[0] }} />
+      <RestaurantCardCover key={name} source={{ uri: 'https://picsum.photos/700' }} />
       <Info>
         <Title>{restaurant.item.name}</Title>
         <Section>
           <Ratings>
             {
-              ratingsArray.map((rating, id) => (
-                < SvgXml key={id} xml={star} height={20} width={20} />
+              ratingsArray.map((_, id) => (
+                < SvgXml key={`star-${placeId}-${id}`} xml={star} height={20} width={20} />
               ))
             }
           </Ratings>
