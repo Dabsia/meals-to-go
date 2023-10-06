@@ -1,13 +1,24 @@
 import { View, Text, SafeAreaView } from 'react-native'
-import React from 'react'
+import React, { useState, useEffect, useContext } from 'react'
+import MapView from 'react-native-maps'
+import { styled } from 'styled-components'
+import SearchMap from '../features/map/mapSearch'
+
+
+const Map = styled(MapView)`
+  height: 100%;
+  width: 100%
+`
 
 const MapScreen = () => {
   return (
-    <SafeAreaView>
-      <View>
-        <Text>MapScreen</Text>
-      </View>
-    </SafeAreaView>
+    <>
+      <SearchMap />
+      <Map />
+    </>
+
   )
 }
 export default MapScreen
+
+

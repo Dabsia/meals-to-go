@@ -12,8 +12,6 @@ const ActivityIndicatorHolder = styled.View`
     alignItems: center;
 
 `
-
-
 const RestaurantList = styled(FlatList).attrs({
     content: {
         padding: 16
@@ -21,7 +19,7 @@ const RestaurantList = styled(FlatList).attrs({
 })``
 
 const RestaurantsScreen = ({ navigation }) => {
-    const { isLoading, restaurants, err } = useContext(RestaurantContext)
+    const { isLoading, restaurants } = useContext(RestaurantContext)
 
     return (
         <>
