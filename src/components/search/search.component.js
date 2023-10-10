@@ -14,7 +14,7 @@ const Search = () => {
     const { keyword, search } = useContext(LocationContext)
     const [searchKeyword, setSearchKeyword] = useState(keyword)
 
-    console.log(keyword)
+
 
     useEffect(() => {
         search(searchKeyword)
