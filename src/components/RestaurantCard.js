@@ -3,6 +3,9 @@ import { SvgXml } from 'react-native-svg'
 import styled from 'styled-components'
 import star from '../../assets/star'
 import open from '../../assets/open'
+import Favourite from './favourite/favourite'
+import { useContext } from 'react'
+import { FavouritesContext } from '../services/Favourites/Favourites.context'
 
 const Title = styled(Text)`
   color: ${props => props.theme.colors.ui.primary};
@@ -48,7 +51,7 @@ align-self: center
 
 
 const RestaurantCard = ({ restaurant }) => {
-  const photos = restaurant.item.photos
+  // const photos = restaurant.item.photos
 
   // console.log(photos[0])
 
@@ -69,9 +72,11 @@ const RestaurantCard = ({ restaurant }) => {
 
   const ratingsArray = Array.from(new Array(Math.floor(restaurant.item.rating)))
 
+
   return (
 
     <RestaurantCardItem elevation={3}  >
+      <Favourite restaurant={restaurant} />
       <RestaurantCardCover key={name} source={{ uri: 'https://picsum.photos/700' }} />
       <Info>
         <Title>{restaurant.item.name}</Title>

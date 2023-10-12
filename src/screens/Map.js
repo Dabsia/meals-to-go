@@ -1,7 +1,7 @@
 import { View, Text, SafeAreaView } from 'react-native'
 import React, { useState, useEffect, useContext } from 'react'
-import MapView from 'react-native-maps'
-import { Marker } from 'react-native-maps'
+import MapView, { Marker, Callout } from 'react-native-maps'
+import MapCallout from '../features/map/MapCallout'
 import { styled } from 'styled-components'
 import SearchMap from '../features/map/mapSearch'
 import { LocationContext } from '../services/location/location.context'
@@ -14,7 +14,7 @@ const Map = styled(MapView)`
 
 `
 
-const MapScreen = () => {
+const MapScreen = ({ }) => {
 
   const { location } = useContext(LocationContext)
 
@@ -23,7 +23,6 @@ const MapScreen = () => {
 
   const [latDelta, setLatDelta] = useState(0)
 
-  console.log(restaurants.results)
 
   const { viewport, lat, lng } = location
 
@@ -55,8 +54,11 @@ const MapScreen = () => {
                 latitude: restaurant.geometry.location.lat,
                 longitude: restaurant.geometry.location.lng,
               }}
-
-            />
+            >
+              <Callout >
+                <MapCallout restaurant={restaurant} />
+              </Callout>
+            </Marker>
           )
         })
         }

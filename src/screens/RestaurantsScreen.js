@@ -5,6 +5,8 @@ import { styled } from 'styled-components'
 import { RestaurantContext } from '../services/restaurants/restaurant.context'
 import { ActivityIndicator } from 'react-native-paper'
 import Search from '../components/search/search.component'
+import FavouriteList from '../components/favourite/favouriteList'
+
 
 const ActivityIndicatorHolder = styled.View`
     flex: 1;
@@ -21,6 +23,7 @@ const RestaurantList = styled(FlatList).attrs({
 const RestaurantsScreen = ({ navigation }) => {
     const { isLoading, restaurants } = useContext(RestaurantContext)
 
+
     return (
         <>
             <Search />
@@ -31,6 +34,7 @@ const RestaurantsScreen = ({ navigation }) => {
                     </ActivityIndicatorHolder>
                     :
                     <>
+                        {/*<FavouriteList />*/}
                         <RestaurantList
                             data={restaurants.results}
                             renderItem={(item) =>

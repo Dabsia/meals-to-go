@@ -29,6 +29,7 @@ const Search = () => {
                 onSubmitEditing={() => {
                     search(searchKeyword)
                 }}
+                icon='heart'
                 onChangeText={text => {
                     setSearchKeyword(text)
                 }}
