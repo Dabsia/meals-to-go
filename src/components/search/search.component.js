@@ -9,7 +9,7 @@ const SearchContainer = styled.View`
         color: white;
 `
 
-const Search = () => {
+const Search = ({ isFavouritesToggled, onFavouritesToggle }) => {
 
     const { keyword, search } = useContext(LocationContext)
     const [searchKeyword, setSearchKeyword] = useState(keyword)
@@ -29,7 +29,8 @@ const Search = () => {
                 onSubmitEditing={() => {
                     search(searchKeyword)
                 }}
-                icon='heart'
+                icon={isFavouritesToggled ? 'heart' : 'heart-outline'}
+                onIconPress={onFavouritesToggle}
                 onChangeText={text => {
                     setSearchKeyword(text)
                 }}

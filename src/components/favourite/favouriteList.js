@@ -1,15 +1,32 @@
-import { View, Text } from 'react-native'
-import React, { useContext } from 'react'
-import { FavouritesContext } from '../../services/Favourites/Favourites.context'
+import { View } from 'react-native'
+import React from 'react'
 import CompactRestaurantInfo from '../compactRestaurantInfo/CompactRestaurantInfo'
+import { styled } from 'styled-components'
+import { ScrollView } from 'react-native'
 
-const FavouriteList = ({ restaurant }) => {
-    const { favourites } = useContext(FavouritesContext)
-    console.log(favourites.length)
+const FavouriteList = ({ favourites }) => {
+
+
+    const FavouritesContainer = styled.View`
+        padding: 10px 20px
+    `
+
+
     return (
-        <View>
-            <CompactRestaurantInfo restaurant={restaurant} />
-        </View>
+        <FavouritesContainer>
+            <ScrollView horizontal showHorizontalScrollIndicator={false} >
+                {
+                    favourites.map((restaurant, id) => {
+                        // const key = restaurant?.name.split('')
+                        return (
+                            <View key={id} style={{ marginRight: 10 }} >
+                                <CompactRestaurantInfo restaurant={restaurant} />
+                            </View>
+                        )
+                    })
+                }
+            </ScrollView>
+        </FavouritesContainer>
     )
 }
 

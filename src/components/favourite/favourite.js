@@ -19,9 +19,6 @@ const Favourite = ({ restaurant }) => {
 
     const isFavourite = favourites.includes(restaurant)
 
-    // const isFavourite = favourites.includes(r => r.place_id === restaurant.place_id)
-
-    console.log(favourites.length)
 
     return (
 
