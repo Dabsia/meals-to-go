@@ -8,8 +8,11 @@ import Navigation from './src/infrastructures/navigation/index'
 import { RestaurantsContextProvider } from './src/services/restaurants/restaurant.context';
 import { LocationContextProvider } from './src/services/location/location.context';
 import { FavouritesContextProvider } from './src/services/Favourites/Favourites.context';
+import { AuthenticationContextProvider } from './src/services/Authentication/authentication.context';
+
 
 export default function App() {
+
 
   const [oswaldLoaded] = useOswald({
     Oswald_400Regular,
@@ -23,16 +26,19 @@ export default function App() {
     return null
   }
 
+
   return (
     <SafeArea>
       <ThemeProvider theme={theme} >
-        <FavouritesContextProvider>
-          <LocationContextProvider>
-            <RestaurantsContextProvider>
-              <Navigation />
-            </RestaurantsContextProvider>
-          </LocationContextProvider>
-        </FavouritesContextProvider>
+        <AuthenticationContextProvider>
+          <FavouritesContextProvider>
+            <LocationContextProvider>
+              <RestaurantsContextProvider>
+                <Navigation />
+              </RestaurantsContextProvider>
+            </LocationContextProvider>
+          </FavouritesContextProvider>
+        </AuthenticationContextProvider>
       </ThemeProvider>
       <ExpoStatusBar style="auto" />
     </SafeArea>

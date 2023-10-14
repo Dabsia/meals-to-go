@@ -1,5 +1,5 @@
 import { Ionicons } from '@expo/vector-icons';
-import { NavigationContainer } from '@react-navigation/native';
+
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import MapScreen from '../../screens/Map';
 import SettingsScreen from '../../screens/Settings';
@@ -27,34 +27,34 @@ const Tab = createBottomTabNavigator();
 // };
 
 const AppNavigator = () => (
-  <NavigationContainer>
-    <Tab.Navigator
-      screenOptions={({ route, }) => ({
-        tabBarIcon: ({ color, size }) => {
-          let iconName;
-          if (route.name === 'Restaurants') {
-            iconName = 'md-restaurant'
-          }
-          else if (route.name === 'Map') {
-            iconName = "md-map"
-          }
-          else if (route.name === 'Settings') {
-            iconName = "md-settings"
-          }
-          return <Ionicons name={iconName} size={size} color={color} />
-        },
-        tabBarActiveTintColor: 'tomato',
-        tabBarInactiveTintColor: 'gray',
-        headerShown: false,
-        tabBarStyle: { height: 60 }
 
-      })}
-    >
-      <Tab.Screen name="Restaurants" component={RestaurantsNavigator} />
-      <Tab.Screen name="Map" component={MapScreen} />
-      <Tab.Screen name="Settings" component={SettingsScreen} />
-    </Tab.Navigator>
-  </NavigationContainer>
+  <Tab.Navigator
+    screenOptions={({ route, }) => ({
+      tabBarIcon: ({ color, size }) => {
+        let iconName;
+        if (route.name === 'Restaurants') {
+          iconName = 'md-restaurant'
+        }
+        else if (route.name === 'Map') {
+          iconName = "md-map"
+        }
+        else if (route.name === 'Settings') {
+          iconName = "md-settings"
+        }
+        return <Ionicons name={iconName} size={size} color={color} />
+      },
+      tabBarActiveTintColor: 'tomato',
+      tabBarInactiveTintColor: 'gray',
+      headerShown: false,
+      tabBarStyle: { height: 60 }
+
+    })}
+  >
+    <Tab.Screen name="Restaurants" component={RestaurantsNavigator} />
+    <Tab.Screen name="Map" component={MapScreen} />
+    <Tab.Screen name="Settings" component={SettingsScreen} />
+  </Tab.Navigator>
+
 );
 
 export default AppNavigator
