@@ -1,9 +1,11 @@
-import { AccountBackground } from "../components/account.styles"
+import { AccountBackground, AccountCover } from "../components/account.styles"
 
 
 const LoginScreen = () => {
     return (
-        <AccountBackground />
+        <AccountBackground>
+            <AccountCover />
+        </AccountBackground>
     )
 }
 
