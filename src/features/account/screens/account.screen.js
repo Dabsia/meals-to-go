@@ -1,12 +1,13 @@
 import { AccountBackground, AuthButton, AccountCover, AccountContainer } from "../components/account.styles"
 import { Button } from "react-native-paper"
 
-const AccountScreen = () => {
+const AccountScreen = ({ navigation }) => {
     return (
         <AccountBackground>
             <AccountCover />
             <AccountContainer>
-                <Button onPress={console.log('I was clicked')} buttonColor="black" mode='contained' icon='lock-open-outline' >Login</Button>
+                <AuthButton onPress={() => navigation.navigate('Login')} buttonColor="black" mode='contained' icon='lock-open-outline' >Login</AuthButton>
+                <AuthButton onPress={() => navigation.navigate('Register')} buttonColor="black" mode='contained' icon='lock-open' >Register</AuthButton>
 
             </AccountContainer>
         </AccountBackground>

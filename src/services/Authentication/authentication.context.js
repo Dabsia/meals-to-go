@@ -13,7 +13,9 @@ export const AuthenticationContextProvider = ({ children }) => {
 
     const onLogin = async (userDetails) => {
         try {
+
             setIsLoading(true)
+            setError('')
             const res = await fetch(`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${API_KEY}`, {
                 method: 'POST',
                 headers: {
@@ -30,14 +32,15 @@ export const AuthenticationContextProvider = ({ children }) => {
             else {
                 setIsLoading(false)
                 setUser(data)
+                console.log(data)
                 setIsAuthenticated(true)
+                setError('')
             }
-
-
         }
         catch {
             console.log('Please check your internet connection')
         }
+
 
     }
 
@@ -47,7 +50,8 @@ export const AuthenticationContextProvider = ({ children }) => {
                 user,
                 isLoading,
                 error,
-                onLogin
+                onLogin,
+                isAuthenticated
             }}
         >
             {children}
