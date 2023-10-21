@@ -1,5 +1,6 @@
-import { AccountBackground, AccountCover, AccountContainer2, AuthButton } from "../components/account.styles"
-import { useState } from "react"
+import { AccountBackground, AccountCover, AccountContainer2, AuthButton, AuthBackButton, Title } from "../components/account.styles"
+import { useState, useContext, useEffect } from "react"
+import { AuthenticationContext } from "../../../services/Authentication/authentication.context"
 import { TextInput, ActivityIndicator } from "react-native-paper"
 import { StyleSheet, Text } from "react-native"
 
@@ -9,49 +10,19 @@ const RegisterScreen = ({ navigation }) => {
     const [confirmPassword, setConfirmPassword] = useState('')
     const [email, setEmail] = useState('')
 
-    const [isLoading, setIsLoading] = useState(false)
-    const [error, setError] = useState('')
+    const { isLoading, onRegister, error, user } = useContext(AuthenticationContext)
 
 
     const userDetails = {
         email, password
     }
 
-    const API_KEY = 'AIzaSyD4rmNBymsZNzl0DnYcVieomhx0xJVVKRk'
-
-
-
-    const onRegister = async (userDetails) => {
-        try {
-            console.log(userDetails)
-            setIsLoading(true)
-            setError('')
-            const res = await fetch(`https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${API_KEY}`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(userDetails),
-            })
-            const data = await res.json();
-            if (!res.ok) {
-                setIsLoading(false)
-                setError(data.error.message)
-                console.log(data.error.message)
-            }
-            else {
-                setIsLoading(false)
-                navigation.navigate('Login')
-                setError('')
-            }
+    useEffect(() => {
+        if (!isLoading && !error && user) {
+            navigation.navigate('Login')
         }
-        catch {
-            console.log('Please check your internet connection')
-            setIsLoading(false)
-        }
+    }, [isLoading, error, user])
 
-
-    }
 
     const handle = () => {
         if (!password || !email || !confirmPassword) {
@@ -68,6 +39,7 @@ const RegisterScreen = ({ navigation }) => {
     return (
         <AccountBackground>
             <AccountCover />
+            <Title>Meals To go</Title>
             <AccountContainer2>
                 <TextInput
                     style={{ marginBottom: 10 }}
@@ -94,16 +66,17 @@ const RegisterScreen = ({ navigation }) => {
                     textContentType="password"
                     secureTextEntry
                     autoCapitalize="none"
+                    style={{ marginBottom: 10 }}
                     left={<TextInput.Icon icon="lock" />}
                     value={confirmPassword}
                     onChangeText={text => setConfirmPassword(text)}
                 />
-                <Text style={styles.Text} >{error}</Text>
-                {!isLoading ? <AuthButton onPress={handle} style={{ height: 60, marginTop: 10, }} buttonColor="black" mode='contained' icon='lock-open-outline' >Register</AuthButton> :
+                {error && <Text style={styles.Text} >{error}</Text>}
+                {!isLoading ? <AuthButton onPress={handle} style={{ marginTop: 10, }} buttonColor="#2182BD" mode='contained' icon='email' >Register</AuthButton> :
                     <ActivityIndicator />
                 }
             </AccountContainer2>
-            <AuthButton onPress={() => navigation.goBack()} style={{ height: 60, marginTop: 10, }} buttonColor="black" mode='contained' icon='lock-open-outline' >Back</AuthButton>
+            <AuthBackButton onPress={() => navigation.goBack()} style={{ marginTop: 10, }} buttonColor="#2182BD" mode='contained' icon='arrow-left' >Back</AuthBackButton>
         </AccountBackground>
     )
 }
@@ -111,6 +84,9 @@ const RegisterScreen = ({ navigation }) => {
 export default RegisterScreen
 
 const styles = StyleSheet.create({
-    Text: { color: 'red', marginVertical: 10 }
+    Text: {
+        color: 'red',
+        marginVertical: 10
+    }
 
 })

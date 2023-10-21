@@ -44,6 +44,42 @@ export const AuthenticationContextProvider = ({ children }) => {
 
     }
 
+
+
+
+
+    const onRegister = async (userDetails) => {
+        try {
+
+            setIsLoading(true)
+            setError('')
+            const res = await fetch(`https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${API_KEY}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(userDetails),
+            })
+            const data = await res.json();
+            if (!res.ok) {
+                setIsLoading(false)
+                setError(data.error.message)
+                console.log(data.error.message)
+            }
+            else {
+                setIsLoading(false)
+                setUser(data)
+                setError('')
+            }
+        }
+        catch {
+            console.log('Please check your internet connection')
+            setIsLoading(false)
+        }
+
+
+    }
+
     return (
         <AuthenticationContext.Provider
             value={{
@@ -51,7 +87,7 @@ export const AuthenticationContextProvider = ({ children }) => {
                 isLoading,
                 error,
                 onLogin,
-                isAuthenticated
+                isAuthenticated, onRegister
             }}
         >
             {children}

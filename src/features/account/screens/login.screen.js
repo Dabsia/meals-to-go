@@ -1,4 +1,4 @@
-import { AccountBackground, AuthButton, AccountContainer2, AccountCover } from "../components/account.styles"
+import { AccountBackground, AuthButton, AccountContainer2, AccountCover, AuthBackButton, Title } from "../components/account.styles"
 import { TextInput, ActivityIndicator, Text } from 'react-native-paper';
 import { useState, useContext, useEffect } from "react";
 import { AuthenticationContext } from "../../../services/Authentication/authentication.context";
@@ -27,6 +27,7 @@ const LoginScreen = ({ navigation }) => {
     return (
         <AccountBackground>
             <AccountCover />
+            <Title>Meals To go</Title>
             <AccountContainer2>
                 <TextInput
                     style={{ marginBottom: 10 }}
@@ -44,15 +45,16 @@ const LoginScreen = ({ navigation }) => {
                     secureTextEntry
                     autoCapitalize="none"
                     left={<TextInput.Icon icon="lock" />}
+                    style={{ marginBottom: 10 }}
                     value={password}
                     onChangeText={text => setPassword(text)}
                 />
-                <Text style={styles.Text} >{err}</Text>
-                {!isLoading ? <AuthButton onPress={() => onLogin(userDetails)} style={{ height: 60, marginTop: 10, }} buttonColor="black" mode='contained' icon='lock-open-outline' >Login</AuthButton> :
+                {error && <Text style={styles.Text} >{err}</Text>}
+                {!isLoading ? <AuthButton onPress={() => onLogin(userDetails)} style={{ marginTop: 10, }} buttonColor="#2182BD" mode='contained' icon='email' >Login</AuthButton> :
                     <ActivityIndicator />
                 }
             </AccountContainer2>
-            <AuthButton onPress={() => navigation.goBack()} style={{ height: 60, marginTop: 10, }} buttonColor="black" mode='contained' icon='lock-open-outline' >Back</AuthButton>
+            <AuthBackButton onPress={() => navigation.goBack()} style={{ marginTop: 10, }} buttonColor="#2182BD" mode='contained' icon='arrow-left' >Back</AuthBackButton>
         </AccountBackground>
     )
 }

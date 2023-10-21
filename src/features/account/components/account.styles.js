@@ -29,14 +29,33 @@ export const AccountContainer2 = styled.View`
     height: fit-content;
     padding: ${props => props.theme.space[3]};
     background-color: rgba(255,255,255, 0.9);
+    
     `
 
 export const AuthButton = styled(Button).attrs({
-    color: colors.brand.primary
+    color: colors.brand.secondary
 
 })`
   border-radius: 10px;
   align-self: center;
-  margin-bottom: 10px
+  margin-bottom: 10px;
+  width: 100%;
+  padding: ${props => props.theme.space[1]};
   
+`
+
+export const AuthBackButton = styled(Button).attrs({
+    color: colors.brand.secondary
+
+})`
+  border-radius: 10px;
+  align-self: center;
+  margin-bottom: 10px;
+  
+  
+`
+export const Title = styled.Text`
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px
 `
